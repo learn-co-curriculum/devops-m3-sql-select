@@ -1,4 +1,4 @@
-# SQL SELECT Statement
+# SQL SELECT Statement Code-Along
 
 ## Learning Goals
 
@@ -6,17 +6,20 @@
 - Use a comma-separated column list to display a subset of columns for a query.
 - Use the DISTINCT keyword to select unique values within a column.
 - Use the WHERE clause to select rows that match a predicate.
-- Use the IN keyword to retrieve rows that contain a value within a list of values.
-- Use the BETWEEN modifier to retrieve rows that contain a value that is within a given range.
+- Use the IN keyword to retrieve rows that contain a value within a list of
+  values.
+- Use the BETWEEN modifier to retrieve rows that contain a value that is within
+  a given range.
 - Use the NULL data type keyword to retrieve rows containing a null value.
 - Use the ORDER BY modifier to order tables by specific SELECT statements.
-- Use the ASC and DESC modifiers to sort queries in ascending or descending order.
+- Use the ASC and DESC modifiers to sort queries in ascending or descending
+  order.
 - Use the LIMIT modifier to determine the number of rows to retrieve.
 
 ## Introduction
 
-The SQL SELECT statement retrieves one or more table rows based on matching
-a predicate.
+The SQL SELECT statement retrieves one or more table rows based on matching a
+predicate.
 
 The general syntax for selecting rows from a single table is:
 
@@ -28,22 +31,23 @@ ORDER BY [comma-separated list of columns]
 LIMIT [count];
 ```
 
-- The `WHERE` clause is optional.  The clause is used to select a subset of rows that match
-  the predicate.  If omitted, all rows are retrieved.
-- The `ORDER BY` clause is optional.  The clause is used to sort the result set based on
-  the order of one or more columns.  If omitted, the row order is determined by the DBMS.
-  While some use  a default order based on the primary key, PostgreSQL displays rows in
-  chronological order of insertions and updates.
-- The `LIMIT` clause is optional. The clause restricts the number of rows displayed in the result.
+- The `WHERE` clause is optional. The clause is used to select a subset of rows
+  that match the predicate. If omitted, all rows are retrieved.
+- The `ORDER BY` clause is optional. The clause is used to sort the result set
+  based on the order of one or more columns. If omitted, the row order is
+  determined by the DBMS. While some use a default order based on the primary
+  key, PostgreSQL displays rows in chronological order of insertions and
+  updates.
+- The `LIMIT` clause is optional. The clause restricts the number of rows
+  displayed in the result.
 
+## Table Setup
 
-## Table Setup  (Code Along)
-
-We will work with the same `pet` table from the previous lesson.  
-Copy and execute the following SQL statements in the **pgAdmin**
-query tool to ensure we are starting with the same of rows.
-Note that we've added two additional dogs, a Poodle and a YorkiePoo.
-We will do some pattern matching using their breed names.
+We will work with the same `pet` table from the previous lesson. Copy and
+execute the following SQL statements in the **pgAdmin** query tool to ensure we
+are starting with the same of rows. Note that we've added two additional dogs, a
+Poodle and a YorkiePoo. We will do some pattern matching using their breed
+names.
 
 ```sql
 DROP TABLE IF EXISTS pet;
@@ -84,11 +88,13 @@ INSERT INTO pet (id, name, species, breed, age)
 VALUES (8, 'Lulu', 'dog', 'Yorkiepoo', 12);
 ```
 
-After executing the SQL statements listed above, clear the query panel to remove the statements:
+After executing the SQL statements listed above, clear the query panel to remove
+the statements:
 
 ![clear query](https://curriculum-content.s3.amazonaws.com/6036/sql-select-statement/clearquery.png)
 
-Select Yes to discard the changes (this discards changes to the query panel editor, not changes to the table)
+Select Yes to discard the changes (this discards changes to the query panel
+editor, not changes to the table).
 
 ![discard statements](https://curriculum-content.s3.amazonaws.com/6036/sql-select-statement/confirmdiscard.png)
 
@@ -96,7 +102,7 @@ Confirm the table contains all 8 rows by selecting all rows and columns:
 
 ![confirm pet table rows](https://curriculum-content.s3.amazonaws.com/6036/sql-select-statement/8pets.png)
 
-## SELECT Statement (Code Along)
+## SELECT Statement
 
 Execute each `SELECT` statement in the query tool to practice writing queries.
 
@@ -104,12 +110,9 @@ Execute each `SELECT` statement in the query tool to practice writing queries.
 
 An asterisk character `*` is used to display all columns.
 
-We can provide a comma-separated list of columns to display a subset
-of columns.
+We can provide a comma-separated list of columns to display a subset of columns.
 
-We can use the keyword `distinct` to display
-unique values within a column.
-
+We can use the keyword `distinct` to display unique values within a column.
 
 <table>
 <tr>
@@ -150,8 +153,6 @@ id  name        species	breed	            age
 
 </td>
 </tr>
-
-
 
 <tr>
 <td>
@@ -210,18 +211,17 @@ fish
 
 </table>
 
-
 ### WHERE clause
 
-The `WHERE` clause is used to retrieve a subset of rows
-that match a given predicate.  The predicate is a boolean
-expression that compares column values using:
+The `WHERE` clause is used to retrieve a subset of rows that match a given
+predicate. The predicate is a boolean expression that compares column values
+using:
 
 - Relational operators `=`, `!=`, `<`, `<=`, `>`, `>=`
 - Boolean operators `AND`, `OR`, `NOT`
 - Shorthand boolean operators `IN`, `NOT IN`
 - Shorthand range operator `BETWEEN`
-- Null operator `IS NULL` and `IS NOT NULL`
+- Null operators `IS NULL` and `IS NOT NULL`
 - Pattern matching operator `LIKE`
 
 <table>
@@ -260,8 +260,6 @@ Fifi    1
 </td>
 </tr>
 
-
-
 <tr>
 <td>
 Display name, breed, age of all cats:
@@ -290,7 +288,6 @@ Lil' Bub    American Shorthair  5
 
 </td>
 </tr>
-
 
 <tr>
 <td>
@@ -321,7 +318,6 @@ Lulu        dog
 </td>
 </tr>
 
-
 <tr>
 <td>
 Display name, breed, and age of
@@ -346,8 +342,6 @@ Hana         Tabby               1
 
 </td>
 </tr>
-
-
 
 <tr>
 <td>
@@ -377,7 +371,6 @@ Herbie      4
 </td>
 </tr>
 
-
 <tr>
 <td>
 The BETWEEN keyword can also be used to<br>specify
@@ -405,7 +398,6 @@ Herbie      4
 
 </td>
 </tr>
-
 
 <tr>
 <td>
@@ -459,9 +451,6 @@ Honey       Cavachon
 </td>
 </tr>
 
-
-
-
 <tr>
 <td>
 The NOT keyword retrieves all rows that<br>
@@ -487,8 +476,6 @@ Herbie  fish
 </td>
 </tr>
 
-
-
 <tr>
 <td>
 The NULL keyword is used to
@@ -513,7 +500,6 @@ id  name    age
 
 </td>
 </tr>
-
 
 <tr>
 <td>
@@ -547,27 +533,23 @@ id  name        age
 
 </table>
 
-
-
 ### Pattern Matching
 
+The `LIKE` keyword is used in a WHERE clause to look for a pattern in a column.
+We can use two wildcards with LIKE:
 
-The `LIKE` keyword is used in a WHERE clause to look for a pattern
-in a column.  We can use two wildcards with LIKE:
-
-- `%`  Represents zero, one, or multiple characters
-- `_`  Represents a single character
-
+- `%`  Represents zero, one, or multiple characters.
+- `_`  Represents a single character.
 
 For example:
 
 - `'%abc'` matches words that end in "abc".
 - `'abc%'` matches words that start with "abc".
 - `'%abc%'` matches words that contain "abc" as a substring.
-- `'a_b'` matches 3 letter words that start with "a" and end with "b".
+- `'a_b'` matches 3-letter words that start with "a" and end with "b".
 
-We can also use functions that convert a string to lowercase or
-uppercase to perform case-insensitive matching:
+We can also use functions that convert a string to lowercase or uppercase to
+perform case-insensitive matching:
 
 - `LOWER(str)` - return the lowercase version of string `str`.
 - `UPPER(str)` - return the uppercase version of string `str`.
@@ -608,13 +590,11 @@ Honey       Cavachon
 </td>
 </tr>
 
-
 <tr>
 <td>
 Display name and breed
 where breed contains<br> the
 substring "poo" (case sensitive).
-
 
 <pre>
 <code>
@@ -665,13 +645,11 @@ Lulu    Yorkiepoo
 
 </table>
 
-
-
 ## ORDER BY
 
 The `ORDER BY` clause sorts the retrieved rows by order of one or more columns.
-The optional keywords `ASC` and `DESC` will sort respectively
-in ascending or descending order.  Rows are sorted in ascending order by default.
+The optional keywords `ASC` and `DESC` will sort respectively in ascending or
+descending order. Rows are sorted in ascending order by default.
 
 The `ORDER BY` clause follows the `WHERE` clause, if there is one.
 
@@ -711,7 +689,6 @@ Moe         10
 
 </td>
 </tr>
-
 
 <tr>
 <td>
@@ -776,7 +753,6 @@ Herbie      fish    4
 </td>
 </tr>
 
-
 <tr>
 <td>
 Omit rows that
@@ -808,7 +784,6 @@ Herbie      fish    4
 
 </td>
 </tr>
-
 
 <tr>
 <td>
@@ -842,20 +817,16 @@ Moe     10
 </td>
 </tr>
 
-
-
-
 </table>
-
 
 ## Conclusion
 
-The SQL `SELECT` statement is a flexible and powerful language construct
-for retrieving rows from a database table.  We can use the `WHERE`
-clause to retrieve a subset of rows that match a predicate.  The `ORDER BY`
-clause will sort the rows according to one or more columns.
+The SQL `SELECT` statement is a flexible and powerful language construct for
+retrieving rows from a database table.  We can use the `WHERE` clause to
+retrieve a subset of rows that match a predicate.  The `ORDER BY` clause will
+sort the rows according to one or more columns.
 
 ## Resources
 
 - [PostgreSQL SELECT](https://www.postgresql.org/docs/current/sql-select.html)
-- [PostgreSQL Practice Exercises](https://pgexercises.com/)  
+- [PostgreSQL Practice Exercises](https://pgexercises.com/)
